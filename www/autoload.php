@@ -1,5 +1,5 @@
 <?php
-/*
+
 function __autoload($class)
 {
     if (file_exists(__DIR__ . '/controllers/' . $class . '.php')) {
@@ -10,4 +10,3 @@ function __autoload($class)
         require __DIR__ . '/classes/' . $class . '.php';
     }
 }
-*/

@@ -11,31 +11,6 @@ class DB
         return $this->link;
     }
 
-    public function query($sql, $class = 'stdClass')
-    {
-        $res = mysqli_query($this->link, $sql);
-        if (false === $res) {
-            return false;
-        }
-
-        $ret = [];
-        while ($row = mysqli_fetch_object($res, $class)) {
-            $ret[] = $row;
-        }
-        return $ret;
-    }
-}
-
-/*
-class DB
-{
-    private $link;
-
-    public function __construct()
-    {
-        return $this->link = mysqli_connect('localhost', 'root', '1234', 'test');
-    }
-
     public function queryAll($sql, $class = 'stdClass')
     {
         $res = mysqli_query($this->link, $sql);
@@ -55,4 +30,3 @@ class DB
         return $this->queryAll($sql, $class)[0];
     }
 }
-*/
