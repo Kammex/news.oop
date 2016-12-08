@@ -3,7 +3,7 @@
 <head>
     <title>News today</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <!-- HEADER -->
@@ -28,22 +28,7 @@
 </nav>
 <!-- /NAVIGATION -->
 <!-- MAIN SECTION-->
-<main>
-    <div class="container">
-        <h2 class="collection-title">News Collection <small>Visualize Quality</small></h2>
-        <div class="collections">
-            <div class="collection-item-outer">
-                <div class="collection-item">
-                    <div class="collection-text">
-                        <h3><?php echo $item->title; ?></h3>
-                        <p><?php echo $item->text ?></p>
-                        <small><?php echo $item->add_news ?></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
+<?php include __DIR__ . '/formAdd.php' ?>
 <!-- /MAIN SECTION-->
 <!-- FOOTER -->
 <footer class="footer">
@@ -54,4 +39,3 @@
 <!-- /FOOTER -->
 </body>
 </html>
-

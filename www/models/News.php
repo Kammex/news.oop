@@ -33,5 +33,4 @@ class News
         return $news;
     }
 
-
 }

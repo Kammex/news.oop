@@ -26,4 +26,27 @@ abstract class AbstractModel
         return $db->queryOne($sql, static::$class);
     }
 
+    public static function addNews()
+    {
+        $db = new DB();
+        $title = $_POST['title'];
+        $text = $_POST['article'];
+        $sql = "INSERT INTO " . static::$table . " (`title`) VALUES ('" . $title . "')";
+        if (false == $db->exec($sql)) {
+            return false;
+        }
+        $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT 1';
+        $id = $db->queryOne($sql, static::$class)->id;
+
+        $file = new File();
+        $file_name = $file->getFileName($id);
+
+        $sql = "UPDATE " . static::$table . " SET path='" . $file_name . "' WHERE id=" . $id;
+        if (false == $db->exec($sql)) {
+            return false;
+        }
+
+        return $file->upload($text);
+    }
+
 }

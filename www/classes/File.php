@@ -57,7 +57,7 @@ class File
             return false;
         }
 
-        $path = __DIR__ . '/../articles/' . $this->file_name;
+        $path = __DIR__ . '/../news/' . $this->file_name;
         if (file_put_contents($path, $text)) {
             return true;
         }

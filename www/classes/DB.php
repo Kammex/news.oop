@@ -4,6 +4,7 @@ class DB
 {
     private $link;
 
+    /*Метод создает ссоединение с БД*/
     public function __construct()
     {
         $this->link = mysqli_connect('localhost', 'root', '1234', 'test');
@@ -11,6 +12,7 @@ class DB
         return $this->link;
     }
 
+    /*Метод осуществляет выбор всех записей и возвращает массив объектов*/
     public function queryAll($sql, $class = 'stdClass')
     {
         $res = mysqli_query($this->link, $sql);
@@ -25,8 +27,16 @@ class DB
         return $ret;
     }
 
+    /*Метод выбирает одну запись из БД по заданному запросу и возвращает объект*/
     public function queryOne($sql, $class = 'stdClass')
     {
         return $this->queryAll($sql, $class)[0];
     }
+
+    /*Метод выполняет запросы изменения, удаления и вставки*/
+    public function exec($sql)
+    {
+        return mysqli_query($this->link, $sql);
+    }
+
 }
