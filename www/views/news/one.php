@@ -35,9 +35,9 @@
             <div class="collection-item-outer">
                 <div class="collection-item">
                     <div class="collection-text">
-                        <h3><?php echo $item->title; ?></h3>
-                        <p><?php echo $item->text ?></p>
-                        <small><?php echo $item->add_news ?></small>
+                        <h3><?php echo $this->items->title; ?></h3>
+                        <p><?php echo $this->items->text ?></p>
+                        <small><?php echo $this->items->add_news ?></small>
                     </div>
                 </div>
             </div>
