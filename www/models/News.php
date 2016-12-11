@@ -33,4 +33,26 @@ class News
         return $news;
     }
 
+    /*Добавление новой новости*/
+    public static function addNews($title, $text)
+    {
+        $db = new DB();
+        $sql = "INSERT INTO " . self::$table . " (`title`) VALUES ('" . $title . "')";
+        if (false == $db->exec($sql)) {
+            return false;
+        }
+        $sql = 'SELECT * FROM ' . self::$table . ' ORDER BY id DESC LIMIT 1';
+        $id = $db->queryOne($sql, self::$class)->id;
+
+        $file = new File();
+        $file_name = $file->getFileName($id);
+
+        $sql = "UPDATE " . self::$table . " SET path='" . $file_name . "' WHERE id=" . $id;
+        if (false == $db->exec($sql)) {
+            return false;
+        }
+
+        return $file->upload($text);
+    }
+
 }

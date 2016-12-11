@@ -58,9 +58,10 @@ class File
         }
 
         $path = __DIR__ . '/../news/' . $this->file_name;
-        if (file_put_contents($path, $text)) {
+        if ($x = file_put_contents($path, $text)) {
             return true;
         }
+
         return false;
     }
 

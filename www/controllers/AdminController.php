@@ -16,7 +16,7 @@ class AdminController
             return false;
         }
 
-        if (News::addNews()) {
+        if (News::addNews($_POST['title'], $_POST['article'])) {
             header('Location: /');
         } else {
             header('Location: /views/news/error.php');
