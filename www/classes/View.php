@@ -12,7 +12,6 @@ class View
 
     public function __construct()
     {
-        //$this->keys = array_keys($this->data);
         $this->position = 0;
     }
 
