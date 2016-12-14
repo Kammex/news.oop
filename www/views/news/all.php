@@ -32,7 +32,7 @@
     <div class="container">
         <h2 class="collection-title">News Collection <small>Visualize Quality</small></h2>
         <div class="collections">
-            <?php foreach ($this->items as $item): ?>
+            <?php foreach ($items as $item): ?>
 
                 <div class="collection-item-outer">
                     <div class="collection-item">

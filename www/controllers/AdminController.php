@@ -7,8 +7,7 @@ class AdminController
     public function actionAddNews()
     {
         $view = new View();
-        $view->data('news', null);
-        $view->display('add.php');
+        $view->display('news/add.php');
         /*
         include __DIR__ . '/../views/news/add.php';
         */

@@ -8,13 +8,12 @@ class NewsController
     {
         $news = new News();
         $view = new View();
-        $view->data('news', $news->getAllNews());
-        $view->display('all.php');
-
-        /*
         $items = $news->getAllNews();
-        include __DIR__ . '/../views/news/all.php';
-        */
+
+        /*Работает магический метод __set($name, $value) и заполняет свойство $data*/
+        $view->items = $items;
+
+        $view->display('news/all.php');
 
     }
 
@@ -23,11 +22,16 @@ class NewsController
         $id = $_GET['id'];
         $news = new News();
         $view = new View();
-        $view->data('news', $news->getOneNews($id));
-        $view->display('one.php');
-        /*
-        $item = $news->getOneNews($id);
-        include __DIR__ . '/../views/news/one.php';
-        */
+
+        $view->item = $news->getOneNews($id);
+
+/*
+        $view->foo = 'bar';
+        foreach ($view as $key => $value) {
+            var_dump($key);
+            echo '<br><br>';
+        }
+*/
+        $view->display('news/one.php');
     }
 }
