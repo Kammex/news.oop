@@ -1,4 +1,4 @@
-<form action="/index.php?ctrl=Admin&act=AddNews" method="post" enctype="multipart/form-data">
+<form action="/index.php?ctrl=Admin&act=AddNews" method="post">
     <label for="title">Название новости</label>
     <input type="text" id="title" name="title" width="400">
     <br><br>

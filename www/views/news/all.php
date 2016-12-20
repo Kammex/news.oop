@@ -34,14 +34,23 @@
         <div class="collections">
             <?php foreach ($items as $item): ?>
 
+
+
                 <div class="collection-item-outer">
                     <div class="collection-item">
                         <div class="collection-text">
                             <a href="/index.php?ctrl=News&act=One&id=<?php echo $item->id?>">
                                 <h3><?php echo $item->title ?></h3>
                             </a>
-                            <p><?php echo $item->text ?></p>
-                            <small><?php echo $item->add_news ?></small>
+                            <p name="text"><?php echo nl2br($item->text) ?></p>
+                            <small><?php echo $item->add_news ?></small><br>
+                            <form action="/index.php?ctrl=Admin&act=DelNews" method="post" style="display: inline-block">
+                                <button name="del" value="<?php echo $item->id?>">Delete</button>
+                            </form>
+                            <form action="/index.php?ctrl=Admin&act=EditNews" method="post" style="display: inline-block">
+                                <button name="edit" value="<?php echo $item->id?>">Edit</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>

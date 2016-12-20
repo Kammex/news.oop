@@ -2,41 +2,40 @@
 
 class DB
 {
-    private $link;
+    private $dbh;
+    private $className = 'stdClass';
 
-    /*Метод создает ссоединение с БД*/
+    /*Метод создает соединение с БД*/
     public function __construct()
     {
-        $this->link = mysqli_connect('localhost', 'root', '1234', 'test');
-        mysqli_query($this->link, 'SET NAMES utf8');
-        return $this->link;
+        $config = Config::getDBConfig();
+        $dns = 'mysql:dbname=' . $config['db'] . ';host=' . $config['host'];
+        $this->dbh = new PDO($dns, $config['user'], $config['pass']);
+        $this->dbh->query('SET NAMES utf8');
     }
 
-    /*Метод осуществляет выбор всех записей и возвращает массив объектов*/
-    public function queryAll($sql, $class = 'stdClass')
+    public function setClassName($className)
     {
-        $res = mysqli_query($this->link, $sql);
-        if (false === $res) {
-            return false;
-        }
-
-        $ret = [];
-        while ($row = mysqli_fetch_object($res, $class)) {
-            $ret[] = $row;
-        }
-        return $ret;
+        $this->className = $className;
     }
 
-    /*Метод выбирает одну запись из БД по заданному запросу и возвращает объект*/
-    public function queryOne($sql, $class = 'stdClass')
+    /*Выполнение запросов выборки*/
+    public function query($sql, $params = [])
     {
-        return $this->queryAll($sql, $class)[0];
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute($params);
+        return $sth->fetchAll(PDO::FETCH_CLASS, $this->className);
     }
 
-    /*Метод выполняет запросы изменения, удаления и вставки*/
-    public function exec($sql)
+    /*Выполнение прочих запросов*/
+    public function execute($sql, $params = [])
     {
-        return mysqli_query($this->link, $sql);
+        $sth = $this->dbh->prepare($sql);
+        return $sth->execute($params);
     }
 
+    public function lastInsertId()
+    {
+        return $this->dbh->lastInsertId();
+    }
 }

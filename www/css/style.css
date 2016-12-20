@@ -133,6 +133,12 @@ button:hover {
     border-radius: 5px;
     outline: none;
 }
+.button {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    outline: none;
+}
 
 /* FOOTER */
 .footer {

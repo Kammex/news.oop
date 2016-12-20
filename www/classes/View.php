@@ -34,7 +34,7 @@ class View
         foreach ($this->data as $key => $val) {
             $$key = $val;
         }
-
+        //var_dump($this->data['item']); die;
         ob_start();
         include __DIR__ . '/../views/' . $template;
         $content = ob_get_contents();
