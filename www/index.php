@@ -23,7 +23,14 @@ $controller = new $controllerClassName;
 /*Формирование переменной, содержащей полное имя вызываемого метода*/
 $method = 'action' . $act;
 
-/*Вызов необходимого метода*/
-$controller->$method();
+try{
+    /*Вызов необходимого метода*/
+    $controller->$method();
+}
+catch (E404Ecxeption $e404) {
+    header('HTTP/1.0 404 Not Found');
+}
+
+
 
 

@@ -45,10 +45,10 @@ abstract class AbstractModel
         $db = new DB();
         $db->setClassName($class);
         $res = $db->query($sql, [':id' => $id]);
-        if (!empty($res)) {
-            return $res[0];
+        if (empty($res)) {
+            throw new E404Ecxeption();
         }
-        return false;
+        return $res[0];
     }
 
     /*Поиск всех записей в таблице с заданным значением заданного поля*/
@@ -59,17 +59,21 @@ abstract class AbstractModel
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=' . $key;
         $db = new DB();
         $db->setClassName($class);
-        return $db->query($sql, [':value' => $value]);
+        $res = $db->query($sql, [':value' => $value]);
+        if (empty($res)) {
+            throw new E404Ecxeption();
+        }
+        return $res;
     }
 
     /*Поиск одной записи в таблице с заданным значением заданного поля*/
     public static function findOneByColumn($column, $value)
     {
         $res = static::findByColumn($column, $value);
-        if (!empty($res)) {
-            return $res[0];
+        if (empty($res)) {
+            throw new E404Ecxeption();
         }
-        return false;
+        return $res[0];
     }
 
     /*Добавление новой записи*/
