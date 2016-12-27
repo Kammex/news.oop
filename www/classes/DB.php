@@ -11,6 +11,7 @@ class DB
         $config = Config::getDBConfig();
         $dns = 'mysql:dbname=' . $config['db'] . ';host=' . $config['host'];
         $this->dbh = new PDO($dns, $config['user'], $config['pass']);
+        $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->dbh->query('SET NAMES utf8');
     }
 

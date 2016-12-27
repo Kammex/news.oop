@@ -16,9 +16,9 @@ class AdminController
         $article->title = $_POST['title'];
         $article->text = nl2br($_POST['article']);
         if ($article->save()) {
-            var_dump($article->id); die;
             header('Location: /');
         } else {
+            $error = 'Произошла ошибка при загрузке новости';
             header('Location: /views/news/error.php');
         }
     }
