@@ -1,9 +1,16 @@
 <?php
 
-
+/**
+ * Class AdminController
+ * Класс администрирования
+ */
 class AdminController
 {
 
+    /**
+     * @return bool
+     * Добавление новой новости
+     */
     public function actionAddNews()
     {
         $view = new View();
@@ -23,6 +30,9 @@ class AdminController
         }
     }
 
+    /**
+     * Удаление новости
+     */
     public function actionDelNews()
     {
         $news = new NewsModel();
@@ -39,6 +49,10 @@ class AdminController
         }
     }
 
+    /**
+     * @return bool
+     * Редактирование новости
+     */
     public function actionEditNews ()
     {
         if (!isset($_POST['edit']) && !isset($_POST['id'])) {
@@ -60,5 +74,23 @@ class AdminController
             header('Location: /');
 
         }
+    }
+
+    /**
+     * Просмотр лога с исключениями
+     */
+    public function actionViewLogs()
+    {
+        $view = new View();
+        $arr = ErrorLog::getLogs();
+        $arr = array_reverse($arr);
+        $items = [];
+        foreach ($arr as $key => $value)
+        {
+            $sub_arr = explode('___', $value);
+            $items[$key] = $sub_arr;
+        }
+        $view->items = $items;
+        $view->display('logs.php');
     }
 }

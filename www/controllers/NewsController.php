@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Class NewsController
+ * Управление новостями
+ */
 class NewsController
 {
     /*Метод получает все новости и выводит их на странице*/
@@ -27,6 +30,9 @@ class NewsController
 
     }
 
+    /**
+     * Вывод в браузер отдельной новости
+     */
     public function actionOne()
     {
         $id = $_GET['id'];

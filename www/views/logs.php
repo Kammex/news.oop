@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>News today</title>
+    <title>Errors logs</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -29,19 +29,25 @@
 <!-- /NAVIGATION -->
 <!-- MAIN SECTION-->
 <main>
-    <div class="container">
-        <h2 class="collection-title">News Collection <small>Visualize Quality</small></h2>
-        <div class="collections">
-            <div class="collection-item-outer">
-                <div class="collection-item">
-                    <div class="collection-text">
-                        <h3><?php echo $item->title; ?></h3>
-                        <p style="height: 100%;"><?php echo nl2br($item->text) ?></p>
-                        <small><?php echo $item->add_news ?></small>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="collections">
+        <table border="2">
+            <tr>
+                <th>Number</th>
+                <th>Time</th>
+                <th>Message</th>
+                <th>Code</th>
+                <th>Place</th>
+            </tr>
+            <?php foreach ($items as $key => $item): ?>
+                <tr>
+                    <td><?php echo $key + 1;?></td>
+                    <td><?php echo $item[0];?></td>
+                    <td><?php echo $item[1];?></td>
+                    <td><?php echo $item[2];?></td>
+                    <td><?php echo $item[3];?></td>
+                </tr>
+            <?php endforeach;?>
+        </table>
     </div>
 </main>
 <!-- /MAIN SECTION-->

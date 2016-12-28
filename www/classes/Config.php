@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Class Config
+ */
 class Config
 {
 
@@ -9,6 +11,10 @@ class Config
     protected static $user = 'root';
     protected static $pass = '1234';
 
+    /**
+     * @return array
+     * Возвращает настройки для подключения к БД
+     */
     public static function getDBConfig()
     {
         return [
@@ -18,5 +24,4 @@ class Config
             'db' => self::$db
         ];
     }
-
 }

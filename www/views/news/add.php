@@ -22,7 +22,7 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/index.php?ctrl=Admin&act=AddNews">Add news</a></li>
-            <!--<li><a href="#">Contacts</a></li>-->
+            <li><a href="/index.php?ctrl=Admin&act=ViewLogs">View logs</a></li>
         </ul>
     </div>
 </nav>

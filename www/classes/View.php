@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * Class View
+ * Класс для управвления отображением контента
+ */
 class View
     implements Iterator
 {
@@ -43,6 +46,10 @@ class View
         return $content;
     }
 
+    /**
+     * @param $template
+     * Вывод на экран заданного контента
+     */
     public function display($template)
     {
         echo $this->render($template);

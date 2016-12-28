@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class DB
+ * Работа с БД
+ */
 class DB
 {
     private $dbh;
@@ -15,6 +19,10 @@ class DB
         $this->dbh->query('SET NAMES utf8');
     }
 
+    /**
+     * @param $className
+     * Устанавливает имя возвращаемого класса
+     */
     public function setClassName($className)
     {
         $this->className = $className;
@@ -35,6 +43,10 @@ class DB
         return $sth->execute($params);
     }
 
+    /**
+     * @return string
+     * Возвращае id последней добавленной записи
+     */
     public function lastInsertId()
     {
         return $this->dbh->lastInsertId();

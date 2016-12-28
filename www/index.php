@@ -26,9 +26,3 @@ $method = 'action' . $act;
 
 /*Вызов необходимого метода*/
 $controller->$method();
-
-
-
-
-
-
