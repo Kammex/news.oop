@@ -24,5 +24,31 @@ $controller = new $controllerClassName;
 $method = 'action' . $act;
 
 
-/*Вызов необходимого метода*/
-$controller->$method();
+try {
+    try{
+        /*Вызов необходимого метода*/
+        $controller->$method();
+    }
+    catch (E404Ecxeption $e404) {
+        header('HTTP/1.0 404 Not Found');
+        $view = new View();
+        $view->error = $e404->getMessage();
+
+        $log = new ErrorLog(__FILE__, __LINE__, $e404->getCode(), $e404->getMessage());
+        $log->logError();
+
+        $view->display('news/error.php');}
+    }
+catch (PDOException $e403) {
+    header('HTTP/1.0 403 Forbidden');
+    $view = new View();
+    $view->error = 'Подключение не удалось: ' . $e403->getMessage();
+
+    $log = new ErrorLog(__FILE__, __LINE__, $e403->getCode(), $e403->getMessage());
+    $log->logError();
+
+    $view->display('news/error.php');
+    die;
+}
+
+

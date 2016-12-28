@@ -46,7 +46,7 @@ abstract class AbstractModel
         $db->setClassName($class);
         $res = $db->query($sql, [':id' => $id]);
         if (empty($res)) {
-            throw new E404Ecxeption('Новости не существует');
+            return false;
         }
         return $res[0];
     }
@@ -61,7 +61,7 @@ abstract class AbstractModel
         $db->setClassName($class);
         $res = $db->query($sql, [':value' => $value]);
         if (empty($res)) {
-            throw new E404Ecxeption('Новости не существует');
+            return false;
         }
         return $res;
     }
@@ -71,7 +71,7 @@ abstract class AbstractModel
     {
         $res = static::findByColumn($column, $value);
         if (empty($res)) {
-            throw new E404Ecxeption('Новости не существует');
+            return false;
         }
         return $res[0];
     }
