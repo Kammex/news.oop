@@ -1,4 +1,4 @@
-<form action="/index.php?ctrl=Admin&act=EditNews" method="post">
+<form action="/Admin/EditNews" method="post">
     <input type="hidden" name="id" value="<?php echo $_POST['edit']?>">
     <label for="title">Название новости</label>
     <input type="text" id="title" name="title" width="400" value="<?php echo $item->title;?>">

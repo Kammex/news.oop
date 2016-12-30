@@ -21,8 +21,8 @@
     <div class="container">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/index.php?ctrl=Admin&act=AddNews">Add news</a></li>
-            <li><a href="/index.php?ctrl=Admin&act=ViewLogs">View logs</a></li>
+            <li><a href="/Admin/AddNews">Add news</a></li>
+            <li><a href="/Admin/ViewLogs">View logs</a></li>
         </ul>
     </div>
 </nav>

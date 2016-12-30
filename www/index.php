@@ -5,27 +5,47 @@
 //Подключение автозагрузки
 require_once __DIR__ . '/autoload.php';
 
+
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$pathParts = explode('/', $path);
+
+//Часть имени вызываемого класса контроллера
+$ctrl = !empty($pathParts[1]) ? ucfirst($pathParts[1]) : 'News';
+
+//Часть имени используемого метода класса контроллера
+if (!empty($pathParts[2]) && is_numeric($pathParts[2])) {
+    $act = 'One';
+    $_GET['id'] = $pathParts[2];
+} elseif (!empty($pathParts[2]) && !is_numeric($pathParts[2])) {
+    $act = ucfirst($pathParts[2]);
+} else {
+    $act = 'All';
+}
+
+
 /*С помощью метода Get передаются имя контроллера и выполняемого метода*/
 /*Создаются переменные, содержащие переданые класс и метод необходимого контроллера, при этом назначаются значения\
 по умолчанию, такие как 'News' & 'All'*/
 
 //Часть имени вызываемого класса контроллера
-$ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'News';
+//$ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'News';
 //Часть имени используемого метода класса контроллера
-$act = isset($_GET['act']) ? $_GET['act'] : 'All';
+//$act = isset($_GET['act']) ? $_GET['act'] : 'All';
 
-/*Формируется полное имя класса контролера*/
-$controllerClassName = $ctrl . 'Controller';
 
-/*Создание объекта заданного класса*/
-$controller = new $controllerClassName;
-
-/*Формирование переменной, содержащей полное имя вызываемого метода*/
-$method = 'action' . $act;
 
 
 try {
     try{
+        /*Формируется полное имя класса контролера*/
+        $controllerClassName = $ctrl . 'Controller';
+
+        /*Создание объекта заданного класса*/
+        $controller = new $controllerClassName;
+
+        /*Формирование переменной, содержащей полное имя вызываемого метода*/
+        $method = 'action' . $act;
+
         /*Вызов необходимого метода*/
         $controller->$method();
     }
