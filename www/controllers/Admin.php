@@ -1,10 +1,16 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Models\News as NewsModel;
+use App\Sources\View;
+use App\Sources\ErrorLog;
+
 /**
  * Class AdminController
  * Класс администрирования
  */
-class AdminController
+class Admin
 {
 
     /**

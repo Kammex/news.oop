@@ -1,5 +1,9 @@
 <?php
 
+use App\sources\E404Ecxeption;
+use App\sources\ErrorLog;
+use App\sources\View;
+
 /*Front-controller*/
 
 //Подключение автозагрузки
@@ -38,7 +42,7 @@ if (!empty($pathParts[2]) && is_numeric($pathParts[2])) {
 try {
     try{
         /*Формируется полное имя класса контролера*/
-        $controllerClassName = $ctrl . 'Controller';
+        $controllerClassName = 'App\\Controllers\\' . $ctrl;
 
         /*Создание объекта заданного класса*/
         $controller = new $controllerClassName;

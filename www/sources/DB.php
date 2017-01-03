@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Sources;
+
 /**
  * Class DB
  * Работа с БД
@@ -14,8 +16,8 @@ class DB
     {
         $config = Config::getDBConfig();
         $dns = 'mysql:dbname=' . $config['db'] . ';host=' . $config['host'];
-        $this->dbh = new PDO($dns, $config['user'], $config['pass']);
-        $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->dbh = new \PDO($dns, $config['user'], $config['pass']);
+        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $this->dbh->query('SET NAMES utf8');
     }
 
@@ -33,7 +35,7 @@ class DB
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($params);
-        return $sth->fetchAll(PDO::FETCH_CLASS, $this->className);
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $this->className);
     }
 
     /*Выполнение прочих запросов*/

@@ -1,10 +1,17 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Models\News as NewsModel;
+use App\Sources\View;
+use App\Sources\E404Ecxeption;
+use App\Sources\ErrorLog;
+
 /**
  * Class NewsController
  * Управление новостями
  */
-class NewsController
+class News
 {
     /*Метод получает все новости и выводит их на странице*/
     public function actionAll()
@@ -13,7 +20,7 @@ class NewsController
 
         try {
             $items = NewsModel::findAll();
-        } catch (PDOException $e403) {
+        } catch (\PDOException $e403) {
             header('HTTP/1.0 403 Forbidden');
             $view->error = 'Подключение не удалось: ' . $e403->getMessage();
 

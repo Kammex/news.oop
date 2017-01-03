@@ -1,11 +1,13 @@
 <?php
 
+namespace App\Sources;
+
 /**
  * Class View
  * Класс для управвления отображением контента
  */
 class View
-    implements Iterator
+    implements \Iterator
 {
 
     private $position = 0;

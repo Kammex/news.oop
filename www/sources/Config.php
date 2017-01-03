@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Sources;
+
 /**
  * Class Config
  */

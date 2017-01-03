@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Sources;
+
 /**
  * Created by PhpStorm.
  * User: oleg
@@ -29,7 +31,7 @@ class ErrorLog
      */
     public function __construct($file = __FILE__, $line = __LINE__, $code = 0, $message = 'error')
     {
-        $date = new DateTime();
+        $date = new \DateTime();
         $this->time = $date->format('Y-m-d H:i:s');
         $this->file = $file;
         $this->line = $line;
