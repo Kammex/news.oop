@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\News as NewsModel;
 use App\Sources\View;
 use App\Sources\E404Ecxeption;
-use App\Sources\ErrorLog;
+//use App\Sources\ErrorLog;
 
 /**
  * Class NewsController
@@ -17,8 +17,8 @@ class News
     public function actionAll()
     {
         $view = new View();
-
-        try {
+        $items = NewsModel::findAll();
+        /*try {
             $items = NewsModel::findAll();
         } catch (\PDOException $e403) {
             header('HTTP/1.0 403 Forbidden');
@@ -28,7 +28,7 @@ class News
             $log->logError();
             $view->display('news/error.php');
             die;
-        }
+        }*/
 
 
         /*Работает магический метод __set($name, $value) и заполняет свойство $data*/
@@ -53,6 +53,15 @@ class News
     if (false === $view->item = NewsModel::findOneByPk($id)) {
         throw new E404Ecxeption('Новости не существует');
     }
-    $view->display('news/one.php');
+
+    global $twig;
+
+    $items = NewsModel::findOneByPk($id);
+    $item = $items->getDataArr();
+
+
+    echo $twig->render('twig/one.php', $item);
+
+    //$view->display('news/one.php');
     }
 }

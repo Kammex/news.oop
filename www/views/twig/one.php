@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ошибка!</title>
+    <title>News today</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -30,9 +30,19 @@
 <!-- /NAVIGATION -->
 <!-- MAIN SECTION-->
 <main>
-    <h2 class="collection-title">Внимание!!</h2>
-    <div class="collections">
-        <?php echo $error; ?>
+    <div class="container">
+        <h2 class="collection-title">News Collection <small>Visualize Quality</small></h2>
+        <div class="collections">
+            <div class="collection-item-outer">
+                <div class="collection-item">
+                    <div class="collection-text">
+                        <h3>{{ title}}</h3>
+                        <p style="height: 100%;">{{ text|nl2br }}</p>
+                        <small>{{ add_news }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 <!-- /MAIN SECTION-->
@@ -45,3 +55,4 @@
 <!-- /FOOTER -->
 </body>
 </html>
+

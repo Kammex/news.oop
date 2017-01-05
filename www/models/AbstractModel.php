@@ -31,6 +31,7 @@ abstract class AbstractModel
         return isset($this->data[$name]);
     }
 
+
     /*Возвращает все записи в таблице*/
     public static function findAll()
     {

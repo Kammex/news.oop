@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ошибка!</title>
+    <title>Mail to user</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -30,10 +30,15 @@
 <!-- /NAVIGATION -->
 <!-- MAIN SECTION-->
 <main>
-    <h2 class="collection-title">Внимание!!</h2>
-    <div class="collections">
-        <?php echo $error; ?>
-    </div>
+    <form action="/Admin/Mail" method="post">
+        <label for="title">Тема письма</label>
+        <input type="text" id="title" name="title" width="400">
+        <br><br>
+        <label for="body">Текст письма</label>
+        <p><textarea id="body" name="body" rows="10" cols="80"></textarea></p>
+        <br>
+        <input type="submit">
+    </form>
 </main>
 <!-- /MAIN SECTION-->
 <!-- FOOTER -->

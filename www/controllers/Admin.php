@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\News as NewsModel;
+use App\Sources\Config;
 use App\Sources\View;
 use App\Sources\ErrorLog;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
 /**
  * Class AdminController
@@ -99,4 +102,57 @@ class Admin
         $view->items = $items;
         $view->display('logs.php');
     }
+
+    public function actionMail()
+    {
+        $view = new View();
+        $view->display('mail.php');
+        if(empty($_POST) || !isset($_POST['title']) || !isset($_POST['body'])) {
+            return false;
+        }
+
+        $config = Config::getMailConfig();
+
+        try {
+            $mail = new PHPMailer();
+
+            $mail->isSMTP();
+            $mail->Host = $config['host'];
+            //$mail->SMTPDebug = $config['debug'];
+            //$mail->Debugoutput = 'html';
+            $mail->Port = $config['port'];
+            $mail->SMTPSecure = $config['secure'];
+            $mail->SMTPAuth = $config['auth'];
+            $mail->Username = $config['username'];
+            $mail->Password = $config['password'];
+            $mail->setFrom($config['username'], 'Oleg Antykuz');
+            $mail->addReplyTo($config['addreply'], 'Oleg Antykuz');
+            $mail->addAddress('antykuzvm@gmail.com', 'User');
+
+            $mail->CharSet = 'UTF-8';
+            $mail->Subject = htmlspecialchars($_POST['title']);
+            $mail->msgHTML($_POST['body']);
+            $mail->AltBody = $_POST['body'];
+
+/*
+            var_dump($mail);
+            echo '<br><br><br><br>';
+            var_dump($_POST);
+            die;
+
+*/
+
+            if (!$mail->send()) {
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            } else {
+                echo "Message sent!";
+            }
+
+
+        } catch (Exception $e) {
+            return $e->errorMessage();
+        }
+
+    }
+
 }

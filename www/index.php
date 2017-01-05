@@ -1,8 +1,8 @@
 <?php
 
-use App\sources\E404Ecxeption;
-use App\sources\ErrorLog;
-use App\sources\View;
+use App\Sources\E404Ecxeption;
+use App\Sources\ErrorLog;
+use App\Sources\View;
 
 /*Front-controller*/
 

@@ -23,6 +23,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/Admin/AddNews">Add news</a></li>
             <li><a href="/Admin/ViewLogs">View logs</a></li>
+            <li><a href="/Admin/Mail">MailUser</a></li>
         </ul>
     </div>
 </nav>

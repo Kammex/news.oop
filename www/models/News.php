@@ -14,4 +14,9 @@ class News
 {
     protected static $table = 'news';
 
+    public function getDataArr()
+    {
+        return $this->data;
+    }
+
 }
