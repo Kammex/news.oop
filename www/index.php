@@ -9,6 +9,7 @@ use App\Sources\View;
 //Подключение автозагрузки
 require_once __DIR__ . '/autoload.php';
 
+PHP_Timer::start();
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $pathParts = explode('/', $path);
@@ -50,6 +51,12 @@ try {
         /*Формирование переменной, содержащей полное имя вызываемого метода*/
         $method = 'action' . $act;
 
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/views');
+        $twig = new Twig_Environment($loader, [
+            'cache' => 'compilation_cache',
+            'auto_reload' => true
+        ]);
+
         /*Вызов необходимого метода*/
         $controller->$method();
     }
@@ -74,5 +81,8 @@ catch (PDOException $e403) {
     $view->display('news/error.php');
     die;
 }
+
+$time = PHP_Timer::stop();
+var_dump(PHP_Timer::resourceUsage());
 
 
